@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { ethers } from 'ethers'
 import { CONTRACT_ADDRESSES, ERC20_ABI, MERCHANT_WALLET_ADDRESS } from '@/lib/web3/config'
 import { Wallet, Loader2, AlertCircle } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 // Define window.ethereum for TypeScript
 declare global {
@@ -27,9 +28,18 @@ export default function CryptoCheckoutPage() {
   const totalAmount = getTotal()
 
   useEffect(() => {
-    if (items.length === 0) {
-      router.push('/cart')
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        setError('You must be logged in to checkout.')
+        setTimeout(() => router.push('/auth/login'), 2000)
+        return
+      }
+      if (items.length === 0) {
+        router.push('/cart')
+      }
     }
+    checkAuth()
   }, [items, router])
 
   const connectWallet = async () => {

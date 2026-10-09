@@ -113,6 +113,7 @@ export default function CartPage() {
                 </dl>
 
                 <div className="mt-6 space-y-4">
+                  <p className="text-sm text-gray-500 text-center mb-4">You must be logged in to checkout.</p>
                   <Link href="/checkout/fiat" className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 block text-center">
                     Checkout with Card
                   </Link>

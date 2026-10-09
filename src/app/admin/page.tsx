@@ -12,6 +12,15 @@ export default async function AdminPage() {
     redirect('/auth/login')
   }
 
+  // Very basic admin check for MVP purposes. In production use RLS or custom claims.
+  if (user.email !== 'admin@example.com') {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold text-red-600">Access Denied</h1>
+      </div>
+    )
+  }
+
   const { data: products } = await supabase
     .from('products')
     .select('*')
