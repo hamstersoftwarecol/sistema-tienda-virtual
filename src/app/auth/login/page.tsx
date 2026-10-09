@@ -37,7 +37,7 @@ export default function LoginPage() {
           },
         })
         if (error) throw error
-        alert('Check your email for the confirmation link.')
+        alert('Revisa tu correo para el enlace de confirmación.')
       }
     } catch (err: any) {
       setError(err.message)
@@ -50,7 +50,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {isLogin ? 'Sign in to your account' : 'Create a new account'}
+          {isLogin ? 'Inicia sesión en tu cuenta' : 'Crea una cuenta nueva'}
         </h2>
       </div>
 
@@ -58,7 +58,7 @@ export default function LoginPage() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleAuth}>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Email address</label>
+              <label className="block text-sm font-medium text-gray-700">Correo electrónico</label>
               <div className="mt-1">
                 <input
                   type="email"
@@ -71,7 +71,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
+              <label className="block text-sm font-medium text-gray-700">Contraseña</label>
               <div className="mt-1">
                 <input
                   type="password"
@@ -96,7 +96,7 @@ export default function LoginPage() {
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
               >
                 {loading && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
-                {isLogin ? 'Sign in' : 'Sign up'}
+                {isLogin ? 'Iniciar Sesión' : 'Registrarse'}
               </button>
             </div>
           </form>
@@ -106,7 +106,7 @@ export default function LoginPage() {
               onClick={() => setIsLogin(!isLogin)}
               className="text-sm text-indigo-600 hover:text-indigo-500"
             >
-              {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+              {isLogin ? '¿No tienes cuenta? Regístrate' : '¿Ya tienes cuenta? Inicia sesión'}
             </button>
           </div>
         </div>

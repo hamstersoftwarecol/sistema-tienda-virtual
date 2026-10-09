@@ -23,13 +23,13 @@ export default function CartPage() {
       <Navbar />
       <main className="flex-grow bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-8">Shopping Cart</h1>
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-8">Carrito de Compras</h1>
 
           {items.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg shadow">
-              <p className="text-xl text-gray-500 mb-6">Your cart is empty.</p>
+              <p className="text-xl text-gray-500 mb-6">Tu carrito está vacío.</p>
               <Link href="/shop" className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                Continue Shopping
+                Seguir Comprando
               </Link>
             </div>
           ) : (
@@ -45,7 +45,7 @@ export default function CartPage() {
                           </div>
                         ) : (
                           <div className="w-24 h-24 rounded-md bg-gray-200 sm:w-32 sm:h-32 flex items-center justify-center">
-                            <span className="text-gray-400 text-xs">No image</span>
+                            <span className="text-gray-400 text-xs">Sin imagen</span>
                           </div>
                         )}
                       </div>
@@ -87,7 +87,7 @@ export default function CartPage() {
                                 className="-m-2 p-2 inline-flex text-gray-400 hover:text-gray-500"
                                 onClick={() => removeItem(item.id)}
                               >
-                                <span className="sr-only">Remove</span>
+                                <span className="sr-only">Eliminar</span>
                                 <Trash2 className="h-5 w-5" aria-hidden="true" />
                               </button>
                             </div>
@@ -102,23 +102,23 @@ export default function CartPage() {
               {/* Order summary */}
               <div className="mt-16 bg-white rounded-lg px-4 py-6 sm:p-6 lg:p-8 lg:mt-0 lg:col-span-5 shadow">
                 <h2 id="summary-heading" className="text-lg font-medium text-gray-900">
-                  Order summary
+                  Resumen de la orden
                 </h2>
 
                 <dl className="mt-6 space-y-4">
                   <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                    <dt className="text-base font-medium text-gray-900">Order total</dt>
+                    <dt className="text-base font-medium text-gray-900">Total a pagar</dt>
                     <dd className="text-base font-medium text-gray-900">${getTotal().toFixed(2)}</dd>
                   </div>
                 </dl>
 
                 <div className="mt-6 space-y-4">
-                  <p className="text-sm text-gray-500 text-center mb-4">You must be logged in to checkout.</p>
+                  <p className="text-sm text-gray-500 text-center mb-4">Debes iniciar sesión para pagar.</p>
                   <Link href="/checkout/fiat" className="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 block text-center">
-                    Checkout with Card
+                    Pagar con Tarjeta
                   </Link>
                   <Link href="/checkout/crypto" className="w-full bg-slate-800 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-slate-500 block text-center">
-                    Checkout with Crypto (USDT/USDC)
+                    Pagar con Criptomonedas (USDT/USDC)
                   </Link>
                 </div>
               </div>

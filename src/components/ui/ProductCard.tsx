@@ -30,7 +30,7 @@ export function ProductCard({ product }: ProductProps) {
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gray-200 group-hover:opacity-75 transition-opacity">
-              <span className="text-gray-400">No image</span>
+              <span className="text-gray-400">Sin imagen</span>
             </div>
           )}
         </Link>

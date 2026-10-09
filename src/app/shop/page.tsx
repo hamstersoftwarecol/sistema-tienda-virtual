@@ -14,13 +14,13 @@ export default async function ShopPage() {
       <Navbar />
       <main className="flex-grow">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-8">All Products</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 mb-8">Todos los Productos</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products?.map((product: any) => (
               <ProductCard key={product.id} product={product} />
             ))}
              {!products?.length && (
-                <p className="text-gray-500 col-span-full text-center py-12">No products available at the moment.</p>
+                <p className="text-gray-500 col-span-full text-center py-12">No hay productos disponibles por el momento.</p>
               )}
           </div>
         </div>

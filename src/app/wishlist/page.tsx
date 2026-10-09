@@ -23,13 +23,13 @@ export default function WishlistPage() {
       <Navbar />
       <main className="flex-grow bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-8">My Wishlist</h1>
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-8">Mi Lista de Deseos</h1>
 
           {items.length === 0 ? (
             <div className="text-center py-12 bg-white rounded-lg shadow">
-              <p className="text-xl text-gray-500 mb-6">Your wishlist is empty.</p>
+              <p className="text-xl text-gray-500 mb-6">Tu lista de deseos está vacía.</p>
               <Link href="/shop" className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-                Explore Products
+                Explorar Productos
               </Link>
             </div>
           ) : (
@@ -44,7 +44,7 @@ export default function WishlistPage() {
                              <Image src={item.image_url} alt={item.name} fill className="object-cover rounded-md" />
                           ) : (
                             <div className="h-16 w-16 bg-gray-200 rounded-md flex items-center justify-center">
-                              <span className="text-gray-400 text-xs">No img</span>
+                              <span className="text-gray-400 text-xs">Sin img</span>
                             </div>
                           )}
                         </div>

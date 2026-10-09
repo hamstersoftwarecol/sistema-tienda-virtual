@@ -18,7 +18,7 @@ export default function FiatCheckoutPage() {
       const { data: { session } } = await supabase.auth.getSession()
 
       if (!session) {
-        setErrorMsg('You must be logged in to checkout.')
+        setErrorMsg('Debes iniciar sesión para proceder al pago.')
         setTimeout(() => router.push('/auth/login'), 2000)
         return
       }
@@ -38,7 +38,7 @@ export default function FiatCheckoutPage() {
         })
 
         if (!response.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error('Error en la red')
         }
 
         const data = await response.json()
@@ -46,8 +46,8 @@ export default function FiatCheckoutPage() {
           window.location.href = data.url
         }
       } catch (error) {
-        console.error('Error creating checkout session:', error)
-        setErrorMsg('Failed to initialize checkout. Returning to cart...')
+        console.error('Error creando sesión de pago:', error)
+        setErrorMsg('Hubo un fallo al inicializar el pago. Volviendo al carrito...')
         setTimeout(() => router.push('/cart'), 2000)
       }
     }
@@ -65,8 +65,8 @@ export default function FiatCheckoutPage() {
         ) : (
           <>
             <Loader2 className="mx-auto h-12 w-12 text-indigo-600 animate-spin" />
-            <h2 className="mt-4 text-xl font-semibold text-gray-900">Redirecting to secure checkout...</h2>
-            <p className="mt-2 text-sm text-gray-500">Please wait while we prepare your payment session.</p>
+            <h2 className="mt-4 text-xl font-semibold text-gray-900">Redirigiendo a pasarela segura...</h2>
+            <p className="mt-2 text-sm text-gray-500">Por favor, espera mientras preparamos tu sesión de pago.</p>
           </>
         )}
       </div>

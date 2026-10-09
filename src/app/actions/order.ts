@@ -9,7 +9,7 @@ export async function createOrderFromCart(items: CartItem[], totalAmount: number
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
-    return { error: 'User must be logged in to create an order.' }
+    return { error: 'El usuario debe iniciar sesión para crear una orden.' }
   }
 
   // 1. Create the order
@@ -18,15 +18,15 @@ export async function createOrderFromCart(items: CartItem[], totalAmount: number
     .insert({
       user_id: user.id,
       total_amount: totalAmount,
-      status: 'completed',
+      status: 'completada',
       payment_method: paymentMethod,
     } as any)
     .select()
     .single()
 
   if (orderError || !order) {
-    console.error("Order creation error", orderError)
-    return { error: 'Failed to create order.' }
+    console.error("Error al crear la orden", orderError)
+    return { error: 'Hubo un fallo al crear la orden.' }
   }
 
   // 2. Create the order items
@@ -42,8 +42,8 @@ export async function createOrderFromCart(items: CartItem[], totalAmount: number
     .insert(orderItemsToInsert as any)
 
   if (itemsError) {
-    console.error("Order items creation error", itemsError)
-    return { error: 'Failed to add items to order.' }
+    console.error("Error al agregar artículos a la orden", itemsError)
+    return { error: 'Hubo un fallo al agregar los artículos a la orden.' }
   }
 
   // 3. Decrease inventory for each item

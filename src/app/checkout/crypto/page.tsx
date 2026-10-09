@@ -31,7 +31,7 @@ export default function CryptoCheckoutPage() {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) {
-        setError('You must be logged in to checkout.')
+        setError('Debes iniciar sesión para pagar.')
         setTimeout(() => router.push('/auth/login'), 2000)
         return
       }
@@ -51,10 +51,10 @@ export default function CryptoCheckoutPage() {
         const accounts = await provider.send("eth_requestAccounts", [])
         setAccount(accounts[0])
       } else {
-        setError("Please install MetaMask or another Web3 wallet.")
+        setError("Por favor, instala MetaMask u otra billetera Web3.")
       }
     } catch (err: any) {
-      setError(err.message || "Failed to connect wallet.")
+      setError(err.message || "Fallo al conectar la billetera.")
     } finally {
       setIsConnecting(false)
     }
@@ -83,7 +83,7 @@ export default function CryptoCheckoutPage() {
 
     } catch (err: any) {
       console.error(err)
-      setError(err.message || "Transaction failed or was rejected.")
+      setError(err.message || "La transacción falló o fue rechazada.")
     } finally {
       setIsProcessing(false)
     }
@@ -95,10 +95,10 @@ export default function CryptoCheckoutPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Crypto Checkout
+          Pago con Criptomonedas
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Total Amount: <span className="font-bold text-lg">${totalAmount.toFixed(2)}</span>
+          Monto Total: <span className="font-bold text-lg">${totalAmount.toFixed(2)}</span>
         </p>
       </div>
 
@@ -129,19 +129,19 @@ export default function CryptoCheckoutPage() {
               ) : (
                 <Wallet className="h-5 w-5 mr-2" />
               )}
-              {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+              {isConnecting ? 'Conectando...' : 'Conectar Billetera'}
             </button>
           ) : (
             <div className="space-y-6">
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-2">Connected Wallet:</p>
+                <p className="text-sm font-medium text-gray-700 mb-2">Billetera Conectada:</p>
                 <div className="p-3 bg-gray-100 rounded-md truncate text-xs text-gray-600 font-mono">
                   {account}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Select Token</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Seleccionar Token</label>
                 <select
                   value={selectedToken}
                   onChange={(e) => setSelectedToken(e.target.value as 'USDT' | 'USDC')}
@@ -160,7 +160,7 @@ export default function CryptoCheckoutPage() {
                 {isProcessing ? (
                   <Loader2 className="animate-spin h-5 w-5 mr-2" />
                 ) : null}
-                {isProcessing ? 'Processing Payment...' : `Pay ${totalAmount.toFixed(2)} ${selectedToken}`}
+                {isProcessing ? 'Procesando Pago...' : `Pagar ${totalAmount.toFixed(2)} ${selectedToken}`}
               </button>
             </div>
           )}
