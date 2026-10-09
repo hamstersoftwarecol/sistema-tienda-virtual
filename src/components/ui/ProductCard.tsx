@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { AddToCartButton } from './AddToCartButton'
+import { WishlistButton } from './WishlistButton'
 
 interface ProductProps {
   product: {
@@ -15,6 +16,9 @@ interface ProductProps {
 export function ProductCard({ product }: ProductProps) {
   return (
     <div className="group relative border rounded-lg overflow-hidden flex flex-col bg-white">
+      <div className="absolute top-2 right-2 z-20">
+        <WishlistButton product={product} />
+      </div>
       <div className="aspect-w-3 aspect-h-4 bg-gray-200 sm:aspect-none sm:h-96 relative">
         <Link href={`/shop/${product.id}`}>
           {product.image_url ? (

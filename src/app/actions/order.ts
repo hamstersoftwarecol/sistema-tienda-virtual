@@ -46,5 +46,26 @@ export async function createOrderFromCart(items: CartItem[], totalAmount: number
     return { error: 'Failed to add items to order.' }
   }
 
+  // 3. Decrease inventory for each item
+  for (const item of items) {
+    // Note: In a highly concurrent production environment, a database function or RPC is preferred to avoid race conditions.
+    // We fetch the current inventory, then decrement.
+    const { data: product } = await supabase
+      .from('products')
+      .select('inventory_count')
+      .eq('id', item.id)
+      .single()
+
+    if (product && typeof (product as any).inventory_count === 'number') {
+      const newCount = Math.max(0, (product as any).inventory_count - item.quantity)
+      // Because we haven't defined the exact Supabase types properly everywhere, we'll cast to any for the builder chain
+      const clientAny: any = supabase;
+      await clientAny
+        .from('products')
+        .update({ inventory_count: newCount })
+        .eq('id', item.id)
+    }
+  }
+
   return { success: true, orderId: (order as any).id }
 }

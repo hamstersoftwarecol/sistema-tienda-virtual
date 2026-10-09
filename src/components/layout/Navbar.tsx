@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { User } from 'lucide-react'
 import { CartIcon } from '@/components/ui/CartIcon'
+import { WishlistIcon } from '@/components/ui/WishlistIcon'
 
 export function Navbar() {
   return (
@@ -18,6 +19,9 @@ export function Navbar() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
+            <Link href="/wishlist" className="text-gray-500 hover:text-gray-900">
+              <WishlistIcon />
+            </Link>
             <Link href="/cart" className="text-gray-500 hover:text-gray-900">
               <CartIcon />
             </Link>
